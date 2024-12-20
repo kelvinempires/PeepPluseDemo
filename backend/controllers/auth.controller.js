@@ -88,7 +88,7 @@ export const login = async (req, res) => {
     generateTokenSetCookies(user._id, res);
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
       expiresIn: "1h",
-     });
+    });
     res.status(200).json({
       id: user._id,
       fullName: user.fullName,
