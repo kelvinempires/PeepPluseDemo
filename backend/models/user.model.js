@@ -4,7 +4,7 @@ const userSchema = new mongoose.Schema(
   {
     fullName: {
       type: String,
-      required: true, 
+      required: true,
       trim: true,
     },
     profileImg: {
@@ -52,6 +52,13 @@ const userSchema = new mongoose.Schema(
       {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",
+        default: [],
+      },
+    ],
+    likedPosts: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Post",
         default: [],
       },
     ],
