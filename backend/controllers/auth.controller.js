@@ -74,8 +74,8 @@ export const signup = async (req, res) => {
 export const login = async (req, res) => {
   try {
     const { username, password } = req.body;
-    if (!username || !password) {
-      return res.status(401).send("Please provide username and password");
+    if (!username || !password ) {
+      return res.status(400).json({error:"Please provide username and password"});
     }
     const user = await User.findOne({ username });
     const isCorrectPassword = await bcrypt.compare(
@@ -114,5 +114,15 @@ export const logout = (req, res) => {
   } catch (error) {
     console.error("Error in logout controller:", error.message);
     res.status(500).send({ message: error.message });
+  }
+};
+
+export const getMe = async (req, res) => {
+  try {
+    const user = await User.findById(req.user._id).select("-password");
+    res.status(200).json(user);
+  } catch (error) {
+    console.error("Error in getMe controller", error.message);
+    res.status(500).json({ error: "internal server error" });
   }
 };
