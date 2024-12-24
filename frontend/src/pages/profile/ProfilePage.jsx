@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 
-import Posts from "../../components/common/Posts";
 import ProfileHeaderSkeleton from "../../components/skeletons/ProfileHeaderSkeleton";
 import EditProfileModal from "./EditProfileModal";
 
@@ -15,6 +14,7 @@ import { useQuery } from "@tanstack/react-query";
 import { formatMemberSinceDate } from "../../utils/date";
 import useFollow from "../../hooks/useFollow";
 import UseUpdateUserProfile from "../../hooks/UseUpdateUserProfile";
+import Posts from "../../components/common/Poosts.jsx";
 
 const ProfilePage = () => {
   const [coverImg, setCoverImg] = useState(null);
