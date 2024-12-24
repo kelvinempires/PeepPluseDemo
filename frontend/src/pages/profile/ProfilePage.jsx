@@ -14,7 +14,7 @@ import { useQuery } from "@tanstack/react-query";
 import { formatMemberSinceDate } from "../../utils/date";
 import useFollow from "../../hooks/useFollow";
 import UseUpdateUserProfile from "../../hooks/UseUpdateUserProfile";
-import Posts from "../../components/common/Poosts.jsx";
+import Posts from "../../components/common/Poxts.jsx";
 
 const ProfilePage = () => {
   const [coverImg, setCoverImg] = useState(null);

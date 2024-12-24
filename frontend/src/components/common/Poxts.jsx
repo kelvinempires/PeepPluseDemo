@@ -1,8 +1,8 @@
-import Post from "./Posst.jsx";
 import PostSkeleton from "../skeletons/PostSkeleton";
 import { useQuery } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import { useEffect } from "react";
+import Post from "./Posst";
 
 const Posts = ({ feedType, username, userId }) => {
   const getPostEndpoint = () => {
