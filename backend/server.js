@@ -1,8 +1,10 @@
 import path from "path";
 import express from "express";
 import dotenv from "dotenv";
-import cookieParser from "cookie-parser"; // Import cookie-parser
+import cookieParser from "cookie-parser";
+import cors from "cors";
 import { v2 as cloudinary } from "cloudinary";
+import helmet from "helmet";
 
 import authRoutes from "./routes/auth.routes.js";
 import userRoutes from "./routes/user.routes.js";
@@ -23,9 +25,49 @@ const app = express();
 const PORT = process.env.PORT || 8000;
 const __dirname = path.resolve();
 
-app.use(express.json({ limit: "5mb" })); //to parse req.body,limit should not be too large to prevent DOS
+// Use helmet with custom CSP settings
+app.use(
+  helmet({
+    contentSecurityPolicy: {
+      directives: {
+        defaultSrc: ["'none'"],
+        imgSrc: ["'self'", "https://peepplusedemo.onrender.com", "data:"], // Allow images from your specified source and data URIs
+        scriptSrc: ["'self'"],
+        styleSrc: ["'self'"],
+        connectSrc: ["'self'"], // Allow connections to your own server
+        fontSrc: ["'self'"], // Allow fonts from your own server
+        objectSrc: ["'none'"], // Restrict object and embed elements
+        mediaSrc: ["'self'"], // Allow media from your own server
+        frameSrc: ["'none'"], // Restrict iframes
+      },
+    },
+  })
+);
+
+app.use(express.json({ limit: "5mb" }));
 app.use(express.urlencoded({ extended: true }));
-app.use(cookieParser()); // Use cookie-parser
+app.use(cookieParser());
+
+// Enable CORS for all routes
+app.use(
+  cors({
+    origin: "http://localhost:3001", // Adjust this to your frontend's URL
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: true,
+  })
+);
+
+// Handle OPTIONS requests
+app.options(
+  "*",
+  cors({
+    origin: "http://localhost:3001",
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: true,
+  })
+);
 
 app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
@@ -38,6 +80,7 @@ if (process.env.NODE_ENV === "production") {
     res.sendFile(path.resolve(__dirname, "frontend", "dist", "index.html"));
   });
 }
+
 app.listen(PORT, () => {
   console.log(`Server is running on port http://localhost:${PORT}`);
   connectMongoDB();
