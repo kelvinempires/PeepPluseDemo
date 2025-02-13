@@ -1,13 +1,11 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-
 import { MdPassword } from "react-icons/md";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import { FaUser } from "react-icons/fa";
-import { assets } from "../../../assets/assets";
-
+import { assets } from "../../../../dist/assets";
 
 const LoginPage = () => {
   const Navigate = useNavigate();
@@ -15,7 +13,7 @@ const LoginPage = () => {
     username: "",
     password: "",
   });
-  const queryClient = useQueryClient()
+  const queryClient = useQueryClient();
   const {
     mutate: loginMutation,
     isPending,
@@ -33,16 +31,16 @@ const LoginPage = () => {
         });
         const data = await res.json();
         if (!res.ok) throw new Error(data.error || "something went wrong");
-        return data
+        return data;
       } catch (error) {
         // throw new Error(error);
-         toast.error(error.message);
-         throw error;
+        toast.error(error.message);
+        throw error;
       }
     },
     onSuccess: () => {
       // refetch the user;
-      queryClient.invalidateQueries({queryKey: ["authUser"]})
+      queryClient.invalidateQueries({ queryKey: ["authUser"] });
     },
   });
   const handleSubmit = (e) => {

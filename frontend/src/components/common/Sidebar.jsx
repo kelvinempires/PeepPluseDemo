@@ -1,4 +1,3 @@
-
 import { MdHomeFilled } from "react-icons/md";
 import { IoNotifications } from "react-icons/io5";
 import { FaUser } from "react-icons/fa";
@@ -6,7 +5,7 @@ import { Link } from "react-router-dom";
 import { BiLogOut } from "react-icons/bi";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
-import { assets } from "../../assets/assets";
+import { assets } from "../../../dist/assets";
 
 const Sidebar = () => {
   const queryClient = useQueryClient();

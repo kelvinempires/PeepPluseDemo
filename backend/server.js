@@ -28,7 +28,12 @@ const __dirname = path.resolve();
 app.use((req, res, next) => {
   res.setHeader(
     "Content-Security-Policy",
-    "default-src 'none'; img-src 'self' https://peepplusedemo.onrender.com; script-src 'self'; style-src 'self';"
+    "default-src 'none';" +
+      "img-src 'self' https://peepplusedemo.onrender.com data:;" + // Allow images and data URIs (for inline images)
+      "script-src 'self' 'unsafe-inline';" + // Allow scripts from self + inline (for production builds)
+      "style-src 'self' 'unsafe-inline';" + // Allow styles from self + inline
+      "connect-src 'self' http://localhost:3001 https://peepplusedemo.onrender.com;" + // Allow API/WebSocket connections
+      "font-src 'self';" // Allow fonts from self
   );
   next();
 });

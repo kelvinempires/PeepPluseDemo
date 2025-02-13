@@ -1,7 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 
-
 import {
   MdOutlineMail,
   MdPassword,
@@ -10,7 +9,7 @@ import {
 import { FaUser } from "react-icons/fa";
 import { useMutation } from "@tanstack/react-query";
 import toast from "react-hot-toast";
-import { assets } from "../../../assets/assets";
+import { assets } from "../../../../dist/assets";
 
 const SignUpPage = () => {
   const navigate = useNavigate();
@@ -65,11 +64,7 @@ const SignUpPage = () => {
   return (
     <div className="max-w-screen-xl mx-auto flex h-screen px-10">
       <div className="flex-1 hidden lg:flex items-center justify-center">
-        <img
-          src={assets.logo}
-          alt="logo"
-          className="lg:w-2/3 fill-white"
-        />
+        <img src={assets.logo} alt="logo" className="lg:w-2/3 fill-white" />
         {/* <img src={assets.signup} className="lg:w-2/3 fill-white" /> */}
       </div>
       <div className="flex-1 flex flex-col justify-center items-center">
