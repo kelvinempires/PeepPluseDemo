@@ -1,7 +1,8 @@
 import path from "path";
 import express from "express";
 import dotenv from "dotenv";
-import cookieParser from "cookie-parser"; // Import cookie-parser
+import cookieParser from "cookie-parser";
+import cors from "cors";
 import { v2 as cloudinary } from "cloudinary";
 
 import authRoutes from "./routes/auth.routes.js";
@@ -20,12 +21,33 @@ cloudinary.config({
 });
 
 const app = express();
-const PORT = process.env.PORT || 8000;  
+const PORT = process.env.PORT || 8000;
 const __dirname = path.resolve();
 
-app.use(express.json({ limit: "5mb" })); //to parse req.body,limit should not be too large to prevent DOS
+app.use(express.json({ limit: "5mb" }));
 app.use(express.urlencoded({ extended: true }));
-app.use(cookieParser()); // Use cookie-parser
+app.use(cookieParser());
+
+// Enable CORS for all routes
+app.use(
+  cors({
+    origin: "http://localhost:3001", // Adjust this to your frontend's URL
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: true,
+  })
+);
+
+// Handle OPTIONS requests
+app.options(
+  "*",
+  cors({
+    origin: "http://localhost:3001",
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: true,
+  })
+);
 
 app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
@@ -34,10 +56,11 @@ app.use("/api/notifications", notificationRoutes);
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "frontend/dist")));
-  app.get("*",(req, res)=>{
-    res.sendFile(path.resolve(__dirname, "frontend","dist", "index.html"))
-  })
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "frontend", "dist", "index.html"));
+  });
 }
+
 app.listen(PORT, () => {
   console.log(`Server is running on port http://localhost:${PORT}`);
   connectMongoDB();

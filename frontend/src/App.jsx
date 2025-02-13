@@ -9,6 +9,7 @@ import ProfilePage from "./pages/profile/ProfilePage";
 import { Toaster } from "react-hot-toast";
 import { useQuery } from "@tanstack/react-query";
 import LoadingSpinner from "./components/common/LoadingSpinner";
+import ResetPassword from "./pages/ResetPassword.jsx";
 
 function App() {
   const { data: authUser, isLoading } = useQuery({
@@ -39,7 +40,7 @@ function App() {
   }
   return (
     <div className="flex max-w-6xl mx-auto">
-    {authUser && <Sidebar />}
+      {authUser && <Sidebar />}
       <Routes>
         <Route
           path="/"
@@ -53,6 +54,8 @@ function App() {
           path="/signup"
           element={!authUser ? <SignUpPage /> : <Navigate to="/" />}
         />
+        <Route path="/reset-password" element={<ResetPassword />} />
+
         <Route
           path="/notifications"
           element={authUser ? <NotificationPage /> : <Navigate to="/login" />}
