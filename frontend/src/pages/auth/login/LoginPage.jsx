@@ -5,7 +5,7 @@ import { MdPassword } from "react-icons/md";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import { FaUser } from "react-icons/fa";
-import { assets } from "../../../../dist/assets";
+import { assets } from "../../../../public/dist/assets";
 
 const LoginPage = () => {
   const Navigate = useNavigate();

@@ -9,7 +9,7 @@ import {
 import { FaUser } from "react-icons/fa";
 import { useMutation } from "@tanstack/react-query";
 import toast from "react-hot-toast";
-import { assets } from "../../../../dist/assets";
+import { assets } from "../../../../public/dist/assets";
 
 const SignUpPage = () => {
   const navigate = useNavigate();
