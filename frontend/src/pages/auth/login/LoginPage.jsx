@@ -5,7 +5,7 @@ import { MdPassword } from "react-icons/md";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import { FaUser } from "react-icons/fa";
-import { assets } from "../../../../public/dist/assets";
+import logo from "/src/logo.png";
 
 const LoginPage = () => {
   const Navigate = useNavigate();
@@ -55,13 +55,13 @@ const LoginPage = () => {
   return (
     <div className="max-w-screen-xl mx-auto flex h-screen">
       <div className="flex-1 hidden lg:flex items-center  justify-center">
-        <img src={assets.logo} alt="logo" className="lg:w-2/3 fill-white" />
+        <img src={logo} alt="logo" className="lg:w-2/3 fill-white" />
         {/* <XSvg className="lg:w-2/3 fill-white" /> */}
       </div>
       <div className="flex-1 flex flex-col justify-center items-center">
         <form className="flex gap-4 flex-col" onSubmit={handleSubmit}>
           <img
-            src={assets.logo}
+            src={logo}
             alt="logo"
             className="w-24 lg:hidden fill-white"
           />

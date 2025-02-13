@@ -5,8 +5,7 @@ import { Link } from "react-router-dom";
 import { BiLogOut } from "react-icons/bi";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
-import { assets } from "../../../public/dist/assets";
-
+import logo from "/src/logo.png";
 const Sidebar = () => {
   const queryClient = useQueryClient();
   const { mutate: logoutMutate } = useMutation({
@@ -37,7 +36,7 @@ const Sidebar = () => {
       <div className="sticky top-0 left-0 h-screen flex flex-col border-r border-gray-700 w-10 md:w-full ">
         <Link to="/" className="flex justify-start md:justify-start">
           <img
-            src={assets.logo}
+            src={logo}
             alt="logo"
             className="px-2 w-12 h-8 rounded-full fill-white hover:bg-stone-900"
           />
