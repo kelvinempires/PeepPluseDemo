@@ -6,7 +6,6 @@ import cors from "cors";
 import { v2 as cloudinary } from "cloudinary";
 import helmet from "helmet";
 
-
 import authRoutes from "./routes/auth.routes.js";
 import userRoutes from "./routes/user.routes.js";
 import postRoutes from "./routes/post.routes.js";
@@ -32,7 +31,7 @@ app.use(
     contentSecurityPolicy: {
       directives: {
         defaultSrc: ["'none'"],
-        imgSrc: ["'self'", "https://peepplusedemo.onrender.com"],
+        imgSrc: ["'self'", "https://peepplusedemo.onrender.com"], // Allow images from your specified source
         scriptSrc: ["'self'"],
         styleSrc: ["'self'"],
       },
