@@ -4,7 +4,6 @@ import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import { v2 as cloudinary } from "cloudinary";
-import helmet from "helmet";
 
 import authRoutes from "./routes/auth.routes.js";
 import userRoutes from "./routes/user.routes.js";
@@ -26,18 +25,14 @@ const PORT = process.env.PORT || 8000;
 const __dirname = path.resolve();
 
 // Use helmet with custom CSP settings
-app.use(
-  helmet({
-    contentSecurityPolicy: {
-      directives: {
-        defaultSrc: ["'none'"],
-        imgSrc: ["'self'", "https://peepplusedemo.onrender.com"], // Allow images from your specified source
-        scriptSrc: ["'self'"],
-        styleSrc: ["'self'"],
-      },
-    },
-  })
-);
+app.use((req, res, next) => {
+  res.setHeader(
+    "Content-Security-Policy",
+    "default-src 'none'; img-src 'self' https://peepplusedemo.onrender.com; script-src 'self'; style-src 'self';"
+  );
+  next();
+});
+
 
 app.use(express.json({ limit: "5mb" }));
 app.use(express.urlencoded({ extended: true }));
