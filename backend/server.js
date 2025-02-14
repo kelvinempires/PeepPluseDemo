@@ -30,10 +30,10 @@ app.use(
   helmet({
     contentSecurityPolicy: {
       directives: {
-        defaultSrc: ["'none'"],
+        defaultSrc: ["'self'", "https://peepplusedemo.onrender.com"],        
         imgSrc: [
           "'self'",
-          "https://peepplusedemo.onrender.com",
+          "https://peepplusedemo.onrender.com/favicon.ico",
           "data:",
           "https://*.cloudinary.com",
         ],
