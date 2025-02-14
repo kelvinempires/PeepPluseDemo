@@ -31,14 +31,14 @@ app.use(
     contentSecurityPolicy: {
       directives: {
         defaultSrc: ["'none'"],
-        imgSrc: ["'self'", "https://peepplusedemo.onrender.com", "data:"], // Allow images from your specified source and data URIs
+        imgSrc: ["'self'", "https://peepplusedemo.onrender.com", "data:"],
         scriptSrc: ["'self'"],
         styleSrc: ["'self'"],
-        connectSrc: ["'self'"], // Allow connections to your own server
-        fontSrc: ["'self'"], // Allow fonts from your own server
-        objectSrc: ["'none'"], // Restrict object and embed elements
-        mediaSrc: ["'self'"], // Allow media from your own server
-        frameSrc: ["'none'"], // Restrict iframes
+        connectSrc: ["'self'"],
+        fontSrc: ["'self'"],
+        objectSrc: ["'none'"],
+        mediaSrc: ["'self'"],
+        frameSrc: ["'none'"],
       },
     },
   })
@@ -51,7 +51,7 @@ app.use(cookieParser());
 // Enable CORS for all routes
 app.use(
   cors({
-    origin: "http://localhost:3001", // Adjust this to your frontend's URL
+    origin: "http://localhost:3001",
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
