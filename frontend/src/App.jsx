@@ -54,7 +54,10 @@ function App() {
           path="/signup"
           element={!authUser ? <SignUpPage /> : <Navigate to="/" />}
         />
-        <Route path="/reset-password" element={<ResetPassword />} />
+        <Route
+          path="/reset-password"
+          element={authUser ? <ResetPassword /> : <Navigate to="/login" />}
+        />
 
         <Route
           path="/notifications"
