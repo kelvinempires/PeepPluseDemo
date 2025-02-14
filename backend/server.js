@@ -31,7 +31,12 @@ app.use(
     contentSecurityPolicy: {
       directives: {
         defaultSrc: ["'none'"],
-        imgSrc: ["'self'", "https://peepplusedemo.onrender.com", "data:"],
+        imgSrc: [
+          "'self'",
+          "https://peepplusedemo.onrender.com",
+          "data:",
+          "https://*.cloudinary.com",
+        ],
         scriptSrc: ["'self'"],
         styleSrc: ["'self'"],
         connectSrc: ["'self'"],
