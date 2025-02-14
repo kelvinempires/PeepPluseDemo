@@ -30,7 +30,7 @@ app.use(
   helmet({
     contentSecurityPolicy: {
       directives: {
-        defaultSrc: ["'self'", "https://peepplusedemo.onrender.com"],        
+        defaultSrc: ["'self'", "https://peepplusedemo.onrender.com"],
         imgSrc: [
           "'self'",
           "https://peepplusedemo.onrender.com/favicon.ico",
